@@ -244,4 +244,43 @@ router.post('/transacao/saida', TransacaoController.saidaEstoque);
  */
 router.post('/solicitar-estoque', TransacaoController.solicitarEstoque);
 
+/**
+ * @swagger
+ * /credenciar-hub:
+ *   post:
+ *     summary: Realiza o credenciamento deste CD no HUB.
+ *     tags: [Transações]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - hubApiUrl
+ *               - meuNome
+ *               - meuEndereco
+ *             properties:
+ *               hubApiUrl:
+ *                 type: string
+ *                 description: URL base da API do HUB
+ *                 example: "http://192.168.1.10:3000/api"
+ *               meuNome:
+ *                 type: string
+ *                 description: Nome deste Centro de Distribuição
+ *                 example: "CD-SAO-PAULO"
+ *               meuEndereco:
+ *                 type: string
+ *                 description: Endereço IP:PORTA deste CD
+ *                 example: "192.168.1.11:3001"
+ *     responses:
+ *       200:
+ *         description: Credenciamento realizado com sucesso.
+ *       400:
+ *         description: Parâmetros obrigatórios não fornecidos.
+ *       500:
+ *         description: Erro no processo de credenciamento.
+ */
+router.post('/credenciar-hub', TransacaoController.credenciarNoHub);
+
 module.exports = router;
